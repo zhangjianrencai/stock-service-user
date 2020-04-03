@@ -1,3 +1,2 @@
-# stock-service-user
-
-## IINT micro-service course
+# blog-service-user
+service about manage users
