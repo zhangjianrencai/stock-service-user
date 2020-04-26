@@ -1,7 +1,5 @@
 package com.stock.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,32 +11,22 @@ import com.stock.service.UserService;
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private UserRepository blogRepository;
+    private UserRepository userRepository;
 
     @Override
-    public List<User> findAllBlogList() {
-        return blogRepository.findAll();
+    public void save(User user) {
+    	userRepository.save(user);
     }
 
     @Override
-    public User findBlogById(long id) {
-        return blogRepository.findById(id);
+    public void edit(User user) {
+    	userRepository.save(user);
     }
 
-    @Override
-    public void save(User blog) {
-    	blogRepository.save(blog);
-    }
-
-    @Override
-    public void edit(User blog) {
-    	blogRepository.save(blog);
-    }
-
-    @Override
-    public void delete(User blog) {
-    	blogRepository.delete(blog);
-    }
+	@Override
+	public User findUserById(long id) {
+		return userRepository.findUserById(id);
+	}
 }
 
 

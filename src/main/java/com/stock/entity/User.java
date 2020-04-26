@@ -6,7 +6,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,9 +19,8 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
-	@GeneratedValue(generator = "system-uuid")
-	private String id;
+	@GeneratedValue(strategy=GenerationType.TABLE)
+	private long id;
 	@Column(nullable = false)
 	private String userName;
 	@Column(nullable = false)
@@ -30,24 +31,12 @@ public class User implements Serializable {
 	private String email;
 	@Column(nullable = false)
 	private String mobileNumber;
-	@Column(nullable = false)
-	private char isConfirmed;
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
-	private Date lastLoginTs;
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
-	private Date createTs;
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
-	private Date lastUpdateTs;
 
 	public User() {
 		super();
 	}
-	
-	public User(String id, String userName, String password, char userType, String email, String mobileNumber,
-			char isConfirmed, Date lastLoginTs, Date createTs, Date lastUpdateTs) {
+
+	public User(long id, String userName, String password, char userType, String email, String mobileNumber) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -55,17 +44,13 @@ public class User implements Serializable {
 		this.userType = userType;
 		this.email = email;
 		this.mobileNumber = mobileNumber;
-		this.isConfirmed = isConfirmed;
-		this.lastLoginTs = lastLoginTs;
-		this.createTs = createTs;
-		this.lastUpdateTs = lastUpdateTs;
 	}
 
-	public String getId() {
+	public Long getUserId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setUserId(long id) {
 		this.id = id;
 	}
 
@@ -108,38 +93,8 @@ public class User implements Serializable {
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
+	
 
-	public char getIsConfirmed() {
-		return isConfirmed;
-	}
-
-	public void setIsConfirmed(char isConfirmed) {
-		this.isConfirmed = isConfirmed;
-	}
-
-	public Date getLastLoginTs() {
-		return lastLoginTs;
-	}
-
-	public void setLastLoginTs(Date lastLoginTs) {
-		this.lastLoginTs = lastLoginTs;
-	}
-
-	public Date getCreateTs() {
-		return createTs;
-	}
-
-	public void setCreateTs(Date createTs) {
-		this.createTs = createTs;
-	}
-
-	public Date getLastUpdateTs() {
-		return lastUpdateTs;
-	}
-
-	public void setLastUpdateTs(Date lastUpdateTs) {
-		this.lastUpdateTs = lastUpdateTs;
-	}
 }
 	
 

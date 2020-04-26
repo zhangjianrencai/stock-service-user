@@ -6,7 +6,7 @@ import com.stock.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findById (long id);
+    User findUserById (long id);
     
     public User save(User blog);
 }

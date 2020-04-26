@@ -1,11 +1,11 @@
 package com.stock.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stock.entity.User;
@@ -17,25 +17,16 @@ public class UserController {
     @Resource
     UserService Userservice;
 	
-    @RequestMapping("/getBlog")
-    @Cacheable(value="blog-key")
-    public User getBlog() {
-    	User blog=Userservice.findBlogById(Long.valueOf(123456));
+    @RequestMapping("/getUser")
+    @Cacheable(value="user-key")
+    public User getUser(@RequestParam(value="userId") String userId, @RequestParam(value="password") String password) {
+    	User user=Userservice.findUserById(Long.valueOf(userId));
     	System.out.println("get from database");
-        return blog;
-    }
-    
-    @RequestMapping("/getUsers")
-    @Cacheable(value="key-Users")
-    public List<User> getUsers() {
-    	List<User> Users=Userservice.findAllBlogList();
-    	System.out.println("get from database");
-        return Users;
+        return user;
     }
     
     @RequestMapping("/saveUser")
-    void saveBlog() {
-    	User user = new User();
-    	Userservice.save(user);
+    public void saveUser(@RequestBody User newUser) {
+    	Userservice.save(newUser);
     }
-}
+}				
