@@ -17,7 +17,7 @@ public class UserController {
     @Resource
     UserService Userservice;
 	
-    @RequestMapping("/getUser")
+    @RequestMapping("/api/getUser")
     @Cacheable(value="user-key")
     public User getUser(@RequestParam(value="userId") String userId, @RequestParam(value="password") String password) {
     	User user=Userservice.findUserById(Long.valueOf(userId));
@@ -25,7 +25,7 @@ public class UserController {
         return user;
     }
     
-    @RequestMapping("/saveUser")
+    @RequestMapping("/api/saveUser")
     public void saveUser(@RequestBody User newUser) {
     	Userservice.save(newUser);
     }
