@@ -14,18 +14,23 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Override
-    public void save(User user) {
-    	userRepository.save(user);
+    public User save(User user) throws Exception{
+    	return userRepository.save(user);
     }
 
     @Override
-    public void edit(User user) {
+    public void edit(User user) throws Exception{
     	userRepository.save(user);
     }
 
 	@Override
-	public User findUserById(long id) {
+	public User findUserById(long id) throws Exception{
 		return userRepository.findUserById(id);
+	}
+
+	@Override
+	public int activeUser(long userId) throws Exception{
+		return userRepository.activeUser(userId);
 	}
 }
 

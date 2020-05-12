@@ -17,16 +17,15 @@ public class UserController {
     @Resource
     UserService Userservice;
 	
-    @RequestMapping("/api/getUser")
+    @RequestMapping("/api/signup")
     @Cacheable(value="user-key")
-    public User getUser(@RequestParam(value="userId") String userId, @RequestParam(value="password") String password) {
+    public User getUser(@RequestParam(value="userId") String userId, @RequestParam(value="password") String password) throws Exception{
     	User user=Userservice.findUserById(Long.valueOf(userId));
-    	System.out.println("get from database");
         return user;
     }
     
-    @RequestMapping("/api/saveUser")
-    public void saveUser(@RequestBody User newUser) {
+    @RequestMapping("/api/signin")
+    public void saveUser(@RequestBody User newUser) throws Exception {
     	Userservice.save(newUser);
     }
 }				

@@ -5,10 +5,12 @@ import com.stock.entity.User;
 
 public interface UserService {
 
-	public User findUserById(long userId);
+	public User findUserById(long userId) throws Exception;
 
-    public void save(User user);
+    public User save(User user) throws Exception;
 
-    public void edit(User user);
+    public void edit(User user) throws Exception;
+    
+    public int activeUser(long userId) throws Exception;
 
 }
